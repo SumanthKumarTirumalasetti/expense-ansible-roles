@@ -1,0 +1,32 @@
+- name: install pip
+  ansible.builtin.pip:
+    name:
+      - PyMySQL
+    executable: pip3.9
+
+- name: Ensure the MySQL server package is installed
+  ansible.builtin.package:
+    name: mysql-server
+    state: present
+
+- name: Ensure MySQL service is running and enabled on boot
+  ansible.builtin.service:
+    name: mysqld
+    state: started
+    enabled: true
+
+- name: Connect to mysql server
+  community.mysql.mysql_info:
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+    login_host: mysql.devopspractice.help
+  register: mysql_info
+  ignore_errors: true
+
+- name: print output
+  ansible.builtin.debug:
+    msg: "{{ mysql_info }}"
+
+- name: set root login_password
+  ansible.builtin.command: "mysql_secure_installation --set-root-pass ExpenseApp@1"
+  when: mysql_info.failed is true
