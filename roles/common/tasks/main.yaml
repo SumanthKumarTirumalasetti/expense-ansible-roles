@@ -1,11 +1,11 @@
 - name: Delete directory
   ansible.builtin.file:
-    path: {{ APPLOCATION }}
+    path: "{{ APPLOCATION }}"
     state: absent
 
 - name: Create a directory
   ansible.builtin.file:
-    path: {{ APPLOCATION }}
+    path: "{{ APPLOCATION }}"
     state: directory
 
 - name: unzip backend code
