@@ -34,9 +34,9 @@
   ansible.builtin.user:
     name: expense
 
-- name: include common role
-  include_role:
-    name: common
+# - name: include common role
+#   include_role:
+#     name: common
 
 # - name: import roles from common
 #   ansible.builtin.import_role:
@@ -60,6 +60,8 @@
 #     remote_src: yes
 
 - name: npm package install
+  tags:
+    - deployment
   community.general.npm:
     path: /app
 
@@ -79,6 +81,8 @@
 
 
 - name: backend daemon reload
+  tags:
+    - deployment
   ansible.builtin.systemd:
       name: backend
       daemon_reload: true
