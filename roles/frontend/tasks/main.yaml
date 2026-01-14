@@ -32,10 +32,10 @@
 #     dest: /usr/share/nginx/html
 #     remote_src: yes
 
-- name: import roles from common
-  ansible.builtin.import_role:
-    name: common
-    tasks_from: main
+# - name: import roles from common
+#   ansible.builtin.import_role:
+#     name: common
+#     tasks_from: main
 
 - name: copy file
   ansible.builtin.template:
