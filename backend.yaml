@@ -1,5 +1,7 @@
 - name: backend
   hosts: backend
   become: yes
+  vars_file:
+    - roles/backend/vars/vault.yaml
   roles:
     - backend
