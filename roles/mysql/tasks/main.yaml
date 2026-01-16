@@ -24,9 +24,9 @@
   register: mysql_info
   ignore_errors: true
 
-- name: print output
-  ansible.builtin.debug:
-    msg: "{{ mysql_info }}"
+# - name: print output
+#   ansible.builtin.debug:
+#     msg: "{{ mysql_info }}"
 
 - name: set root login_password
   ansible.builtin.command: "mysql_secure_installation --set-root-pass {{ lookup('amazon.aws.aws_ssm', '/expense/mysql/mysql_root_password', region='us-east-1', decrypt=True) }}"
